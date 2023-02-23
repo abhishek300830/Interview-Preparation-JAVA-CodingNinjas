@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubsetOfArray {
+public class ReturnSubsetOfArray {
     public static List<List<Integer>> subsets(int arr[]) {
         List<Integer> curr = new ArrayList<>();
         List<List<Integer>> ans = new ArrayList<>();
