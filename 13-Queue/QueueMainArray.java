@@ -1,6 +1,6 @@
 
 public class QueueMainArray {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws QueueEmptyException {
         QueueUsingArray q = new QueueUsingArray(5);
         System.out.println("is Empty " + q.isEmpty());
         q.enqueue(10);
@@ -11,11 +11,13 @@ public class QueueMainArray {
         System.out.println("is Empty " + q.isEmpty());
         System.out.println("front " + q.front());
         System.out.println("dequeue " + q.dequeue());
+        q.enqueue(100);
         System.out.println("dequeue " + q.dequeue());
         System.out.println("dequeue " + q.dequeue());
         System.out.println("dequeue " + q.dequeue());
         System.out.println("dequeue " + q.dequeue());
-        System.out.println("front " + q.front());
+        System.out.println("dequeue " + q.dequeue());
+        // System.out.println("front " + q.front());
 
     }
 }
