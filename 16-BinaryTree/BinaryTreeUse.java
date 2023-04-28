@@ -1,7 +1,45 @@
 import java.util.Scanner;
 
 public class BinaryTreeUse {
-    // take input from user
+
+    // 5. counting the No of Nodes in Tree
+    public static int countNodes(BinaryTreeNode<Integer> node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftCount = countNodes(node.left);
+        int rightCount = countNodes(node.right);
+
+        return 1 + leftCount + rightCount;
+    }
+
+    // 4. Improving the input taking Method
+    public static BinaryTreeNode<Integer> takeInputBettter(boolean isRoot, int parentData, boolean isLeft) {
+        if (isRoot) {
+            System.out.print("Enter Root Data : ");
+        } else {
+            if (isLeft) {
+                System.out.println("Enter Left Child of " + parentData + " : ");
+            } else {
+                System.out.println("Enter Right Child of " + parentData + " : ");
+
+            }
+        }
+        Scanner sc = new Scanner(System.in);
+        int data = sc.nextInt();
+        if (data == -1) {
+            return null;
+        }
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(data);
+        BinaryTreeNode<Integer> leftChild = takeInputBettter(false, data, true);
+        BinaryTreeNode<Integer> rightChild = takeInputBettter(false, data, false);
+        root.left = leftChild;
+        root.right = rightChild;
+        return root;
+
+    }
+
+    // 3. take input from user
     public static BinaryTreeNode<Integer> takeInput() {
         Scanner sc = new Scanner(System.in);
         int data = sc.nextInt();
@@ -19,7 +57,7 @@ public class BinaryTreeUse {
 
     }
 
-    // detailed print function
+    // 2. detailed print function
     public static void printTreeDetailed(BinaryTreeNode<Integer> node) {
         if (node == null) {
             return;
@@ -35,6 +73,7 @@ public class BinaryTreeUse {
         printTreeDetailed(node.left);
         printTreeDetailed(node.right);
     }
+    // 1. Printing the Tree
 
     public static void printTree(BinaryTreeNode<Integer> node) {
         if (node == null) {
@@ -63,13 +102,16 @@ public class BinaryTreeUse {
         // treeRight.right = AnotherRight;
         // treeRight.left = Node;
 
-        BinaryTreeNode<Integer> tree = takeInput();
+        // BinaryTreeNode<Integer> tree = takeInput();
+        BinaryTreeNode<Integer> tree = takeInputBettter(true, 0, true);
 
         // printing Elements of Tree
         printTree(tree);
         System.out.println("Detailed Tree Structure");
         printTreeDetailed(tree);
+        int nodes = countNodes(tree);
+        System.out.println("No of Node in Tree is : " + nodes);
 
     }
 }
-// start from tree recursion in codezen
+// start tree traversal
